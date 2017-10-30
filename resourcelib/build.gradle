@@ -1,0 +1,96 @@
+apply plugin: 'com.android.library'
+apply plugin: 'me.tatarka.retrolambda'
+
+android {
+    compileSdkVersion rootProject.ext.compileSdkVersion
+    buildToolsVersion rootProject.ext.buildToolsVersion
+
+    defaultConfig {
+        minSdkVersion rootProject.ext.minSdkVersion
+        targetSdkVersion rootProject.ext.targetSdkVersion
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        //ARouter 模块名 必须写
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments = [moduleName: project.getName()]
+            }
+        }
+
+
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    dataBinding {
+        enabled = true
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    publishNonDefault true //默认不为发布版本 因为release不能打印debug的log
+    sourceSets {
+        main {
+            jniLibs.srcDirs = ['libs']
+        }
+    }
+}
+
+dependencies {
+    compile fileTree(include: ['*.jar'], dir: 'libs')
+    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
+    testCompile 'junit:junit:4.12'
+    releaseCompile project(path: ':baselibrary', configuration: 'release')
+    debugCompile project(path: ':baselibrary', configuration: 'debug')
+    compile 'com.android.support.constraint:constraint-layout:1.0.2'
+    annotationProcessor "com.alibaba:arouter-compiler:$arouterCompiler"
+
+    compile 'com.squareup.okhttp3:okhttp:3.6.0'
+    compile 'com.google.code.gson:gson:2.8.0'
+    compile 'com.squareup.okio:okio:1.11.0'
+    compile 'com.squareup.okhttp3:logging-interceptor:3.6.0'
+    compile 'com.squareup.retrofit2:retrofit:2.2.0'
+    compile 'com.squareup.retrofit2:converter-gson:2.2.0'
+    compile 'com.squareup.retrofit2:adapter-rxjava2:2.2.0'
+
+    compile 'com.github.bumptech.glide:glide:3.7.0'
+    compile 'com.github.bumptech.glide:okhttp3-integration:1.4.0@aar'
+    compile 'com.flyco.tablayout:FlycoTabLayout_Lib:2.1.2@aar'
+    compile 'com.youth.banner:banner:1.4.9'
+    compile 'com.google.android:flexbox:0.3.0'
+    compile 'cn.yipianfengye.android:zxing-library:2.1'
+    compile 'me.yokeyword:indexablerecyclerview:1.2.3'
+    compile 'de.hdodenhof:circleimageview:2.1.0'
+    compile 'com.prolificinteractive:material-calendarview:1.4.3'
+    compile 'com.contrarywind:Android-PickerView:3.2.5'
+    compile 'com.pgyersdk:sdk:2.7.0@aar'
+    compile 'com.shuyu:GSYVideoPlayer:2.0.6'
+    compile 'com.liulishuo.filedownloader:library:1.6.5'
+
+    compile 'com.mirkowu.imagepicker:imagepicker:1.3.4'
+
+    compile files('libs/BaiduLBS_Android.jar')
+
+    compile files('libs/SocialSDK_QQ_Simplify.jar')
+    compile files('libs/SocialSDK_Sina_Simplify.jar')
+    compile files('libs/SocialSDK_WeiXin_Full.jar')
+
+    compile files('libs/umeng_shareboard_widget.jar')
+    compile files('libs/umeng_social_api.jar')
+    compile files('libs/umeng_social_net.jar')
+    compile files('libs/umeng_social_shareboard.jar')
+    compile files('libs/umeng_social_tool.jar')
+
+    compile files('libs/alipaySdk-20170725.jar')
+    compile files('libs/UPPayAssistEx.jar')
+    compile files('libs/UPPayPluginExPro.jar')
+    compile files('libs/wechat-sdk-android-with-mta-1.1.6.jar')
+}

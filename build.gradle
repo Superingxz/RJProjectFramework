@@ -1,0 +1,48 @@
+// Top-level build file where you can add configuration options common to all sub-projects/modules.
+
+buildscript {
+    repositories {
+        jcenter()
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:2.3.3'
+        classpath 'me.tatarka:gradle-retrolambda:3.2.5'
+        // NOTE: Do not place your application dependencies here; they belong
+        // in the individual module build.gradle files
+    }
+}
+
+allprojects {
+    repositories {
+        jcenter()
+        maven { url 'https://jitpack.io' }
+        maven { url "https://dl.bintray.com/mirkowu/maven/" }
+        maven { url "https://raw.githubusercontent.com/Pgyer/mvn_repo_pgyer/master" }
+    }
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}
+
+Properties properties = new Properties()
+properties.load(project.rootProject.file('local.properties').newDataInputStream())
+
+ext {
+
+    // SDK And Tools
+    minSdkVersion = 16
+    targetSdkVersion = 25
+    compileSdkVersion = 25
+    buildToolsVersion = '25.0.3'
+
+    //Dependencies
+    supportLibraryVersion = '25.3.1'
+    //ARouter
+    arouterCompiler = '1.1.2'
+    //keystore
+    file = properties.getProperty("storeFile")
+    filePwd = properties.getProperty("storePassword")
+    alias = properties.getProperty("keyAlias")
+    pwd = properties.getProperty("keyPassword")
+}

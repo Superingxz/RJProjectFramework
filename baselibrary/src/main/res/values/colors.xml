@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="common_toolbar_bg_color">#FFFFFF</color>
+    <color name="common_title_color">#333333</color>
+    <color name="common_line_color">#cccccc</color>
+    <color name="line_color">#eeeeee</color>
+    <color name="text_black">#333333</color>
+    <color name="text_gray">#999999</color>
+    <color name="blue">#47A8FA</color>
+</resources>
