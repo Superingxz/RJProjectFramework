@@ -29,12 +29,7 @@ public abstract class RefreshFragment<T extends IBasePresenter, B extends ViewDa
     protected void initialize() {
         mRefreshLayout = (RefreshDelegateLayout) mView.findViewById(R.id.mRefreshLayout);
         if (mRefreshLayout != null)
-            mRefreshLayout.setOnRefreshDelegateListener(new RefreshDelegateLayout.OnRefreshDelegateListener() {
-                @Override
-                public void onRefresh() {
-                    RefreshFragment.this.onRefresh();
-                }
-            });
+            mRefreshLayout.setOnRefreshDelegateListener(() -> RefreshFragment.this.onRefresh());
     }
 
     public abstract void onRefresh();
