@@ -27,14 +27,9 @@ public abstract class RefreshActivity<T extends IBasePresenter, B extends ViewDa
      */
     @Override
     protected void initialize() {
-        mRefreshLayout = (RefreshDelegateLayout) findViewById(com.softgarden.baselibrary.R.id.mRefreshLayout);
+        mRefreshLayout = (RefreshDelegateLayout) findViewById(R.id.mRefreshLayout);
         if (mRefreshLayout != null)
-            mRefreshLayout.setOnRefreshDelegateListener(new RefreshDelegateLayout.OnRefreshDelegateListener() {
-                @Override
-                public void onRefresh() {
-                    RefreshActivity.this.onRefresh();
-                }
-            });
+            mRefreshLayout.setOnRefreshDelegateListener(() -> RefreshActivity.this.onRefresh());
 
     }
 
