@@ -12,25 +12,25 @@ import java.lang.reflect.ParameterizedType;
  * Created by Administrator on 2015/6/2.
  */
 
-public abstract class BaseActivity<T extends IBasePresenter, B extends ViewDataBinding> extends DataBindingActivity<B> {
-    protected T mPresenter;
+public abstract class BaseActivity<VM extends IBaseViewModel, B extends ViewDataBinding> extends DataBindingActivity<B> {
+    protected VM mViewModel;
 
     @Override
     protected void initPresenter() {
         if (this instanceof IBaseDisplay
                 && this.getClass().getGenericSuperclass() instanceof ParameterizedType
                 && ((ParameterizedType) (this.getClass().getGenericSuperclass())).getActualTypeArguments().length > 0) {
-            Class mPresenterClass = (Class) ((ParameterizedType) (this.getClass().getGenericSuperclass()))
+            Class mViewModelClass = (Class) ((ParameterizedType) (this.getClass().getGenericSuperclass()))
                     .getActualTypeArguments()[0];//获取Presenter的class
-            mPresenter = InstanceUtil.getInstance(mPresenterClass);
-            if (mPresenter != null) mPresenter.attachView(this);
+            mViewModel = InstanceUtil.getInstance(mViewModelClass);
+            if (mViewModel != null) mViewModel.attachView(this);
         }
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        if (mPresenter != null) mPresenter.detachView();
+        if (mViewModel != null) mViewModel.detachView();
     }
 
 

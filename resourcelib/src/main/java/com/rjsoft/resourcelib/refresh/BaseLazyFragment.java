@@ -2,13 +2,13 @@ package com.rjsoft.resourcelib.refresh;
 
 import android.databinding.ViewDataBinding;
 
-import com.softgarden.baselibrary.base.IBasePresenter;
+import com.softgarden.baselibrary.base.IBaseViewModel;
 
 
 /**
  * Fragment基类 懒加载
  */
-public abstract class BaseLazyFragment<T extends IBasePresenter, B extends ViewDataBinding> extends RefreshFragment<T, B> {
+public abstract class BaseLazyFragment<VM extends IBaseViewModel, B extends ViewDataBinding> extends RefreshFragment<VM, B> {
 
     private static final String TAG = BaseLazyFragment.class.getSimpleName();
     private boolean isPrepared;

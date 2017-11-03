@@ -8,7 +8,7 @@ import com.mirkowu.library.listener.OnLoadMoreListener;
 import com.rjsoft.resourcelib.Constants;
 import com.rjsoft.resourcelib.R;
 import com.softgarden.baselibrary.base.BaseActivity;
-import com.softgarden.baselibrary.base.IBasePresenter;
+import com.softgarden.baselibrary.base.IBaseViewModel;
 import com.softgarden.baselibrary.widget.RefreshDelegateLayout;
 
 import java.util.List;
@@ -17,7 +17,7 @@ import java.util.List;
  * Created by DELL on 2017/7/28.
  */
 
-public abstract class RefreshActivity<T extends IBasePresenter, B extends ViewDataBinding> extends BaseActivity<T, B> implements OnLoadMoreListener {
+public abstract class RefreshActivity<VM extends IBaseViewModel, B extends ViewDataBinding> extends BaseActivity<VM, B> implements OnLoadMoreListener {
 
     RefreshDelegateLayout mRefreshLayout;
     protected int mPage = 1;
